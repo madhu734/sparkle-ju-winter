@@ -1,0 +1,84 @@
+@import "tailwindcss";
+
+.serif-editorial {
+  font-family: 'Cormorant Garamond', 'Hind Siliguri', Georgia, serif;
+  font-weight: 600;
+}
+
+.editorial-label {
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--mute);
+  font-weight: 600;
+}
+
+.editorial-input {
+  width: 100%;
+  background: transparent;
+  border-bottom: 1px solid var(--line);
+  padding: 0.7rem 0;
+  outline: none;
+  font-size: 0.92rem;
+  color: var(--ink);
+  transition: border-color 0.2s;
+}
+
+.editorial-input:focus {
+  border-color: var(--ink);
+}
+
+.editorial-input.err {
+  border-color: #dc2626;
+}
+
+.editorial-pill {
+  border: 1px solid var(--line);
+  padding: 0.45rem 0.95rem;
+  border-radius: 9999px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  transition: all 0.2s;
+  background: transparent;
+  color: var(--ink);
+  white-space: nowrap;
+}
+
+.editorial-pill:hover {
+  border-color: var(--ink);
+}
+
+.editorial-pill.active {
+  background: var(--accent);
+  color: var(--onacc);
+  border-color: var(--accent);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+  .print-slip,
+  .print-slip * {
+    visibility: visible;
+  }
+  .print-slip {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    box-shadow: none !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+}
