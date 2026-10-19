@@ -31,7 +31,7 @@ export default function Navbar({
           style={{ color: 'var(--mute)' }}
         >
           <a href="#preorder" className="hover:opacity-100 transition-opacity font-semibold" style={{ color: 'var(--ink)' }}>
-            {T('Pre-Order & Trial', 'প্রি-অর্ডার ও ট্রায়াল')}
+            {T('Campus Trial', 'ক্যাম্পাস ট্রায়াল')}
           </a>
           <a href="#collection" className="hover:opacity-100 transition-opacity">
             {T('Jackets & Hoodies', 'জ্যাকেট ও হুডি')}

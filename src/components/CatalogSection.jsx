@@ -68,17 +68,6 @@ export default function CatalogSection({
           />
 
           <div className="max-w-3xl space-y-4">
-            {/* Top Pre-Order Badge */}
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold tracking-wider uppercase bg-amber-500/15 text-amber-700 dark:text-amber-300 border border-amber-500/30">
-                <Clock className="w-3.5 h-3.5" />
-                <span>Pre-Order · Winter 2026</span>
-              </span>
-              <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium border" style={{ borderColor: 'var(--line)', color: 'var(--mute)' }}>
-                {T('2 Signature Editions', '২টি সিগনেচার ডিজাইন')}
-              </span>
-            </div>
-
             {/* Main Catchy Headline */}
             <h1 className="serif-editorial text-3xl sm:text-5xl lg:text-6xl leading-[1.08] tracking-tight">
               {T(
@@ -324,31 +313,6 @@ export default function CatalogSection({
               ))}
             </div>
 
-            {/* Edition Filter (2 Designs) */}
-            <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-0.5">
-              <span className="editorial-label mr-1 shrink-0">Design:</span>
-              <button
-                type="button"
-                onClick={() => setFilterDesign('all')}
-                className={`editorial-pill !py-1 !px-3 text-xs cursor-pointer ${
-                  filterDesign === 'all' ? 'active' : ''
-                }`}
-              >
-                {T('All Designs', 'সব ডিজাইন')}
-              </button>
-              {DESIGNS.map((d) => (
-                <button
-                  key={d.id}
-                  type="button"
-                  onClick={() => setFilterDesign(d.id)}
-                  className={`editorial-pill !py-1 !px-2.5 text-xs cursor-pointer ${
-                    filterDesign === d.id ? 'active' : ''
-                  }`}
-                >
-                  {T(d.codeEn, d.codeBn)}
-                </button>
-              ))}
-            </div>
 
             {/* Size Filter */}
             <div className="flex items-center gap-1 overflow-x-auto no-scrollbar pb-0.5">
@@ -465,14 +429,14 @@ export default function CatalogSection({
                         />
                         <span className="truncate">{T(colorObj.nameEn, colorObj.nameBn)}</span>
                       </span>
-                      <span className="shrink-0 font-semibold">{T(designObj.codeEn, designObj.codeBn)}</span>
+                      <span className="shrink-0 font-semibold">{item.badgeEn ? T(item.badgeEn, item.badgeBn) : (item.badgeBn || '')}</span>
                     </div>
 
                     {/* Title */}
                     <h3 className="serif-editorial text-base sm:text-lg leading-snug line-clamp-2">
-                      {item.category === 'hoodie'
-                        ? T(`Sparkle JU Hoodie · ${designObj.nameEn}`, `স্পার্কল জাবি হুডি · ${designObj.nameBn}`)
-                        : T(designObj.nameEn, designObj.nameBn)}
+                      {item.badgeEn
+                        ? (item.category === 'hoodie' ? `Sparkle Hoodie · ${T(item.badgeEn, item.badgeBn)}` : `Sparkle Jacket · ${T(item.badgeEn, item.badgeBn)}`)
+                        : (item.design_variant || (item.category === 'hoodie' ? T('Sparkle Collegiate Hoodie', 'স্পার্কল কলেজিয়েট হুডি') : T('Sparkle Bonded Jacket', 'স্পার্কল বন্ডেড জ্যাকেট')))}
                     </h3>
 
                     {/* Price */}

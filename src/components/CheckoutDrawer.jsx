@@ -77,12 +77,14 @@ export default function CheckoutDrawer({
               <span className="editorial-label flex items-center gap-1">
                 <span>
                   {selectedProduct?.category === 'hoodie'
-                    ? T('Sparkle Hoodie · Winter 2026', 'স্পার্কল হুডি · উইন্টার ২০২৬')
-                    : T('Bonded Jacket · Winter 2026', 'বন্ডেড জ্যাকেট · উইন্টার ২০২৬')}
+                    ? T('Sparkle Collegiate Hoodie', 'স্পার্কল কলেজিয়েট হুডি')
+                    : T('Sparkle Bonded Jacket', 'স্পার্কল বন্ডেড জ্যাকেট')}
                 </span>
               </span>
               <h3 className="serif-editorial text-xl font-bold leading-tight">
-                {T(activeDesignObj.nameEn, activeDesignObj.nameBn)}
+                {selectedProduct?.badgeEn
+                  ? T(selectedProduct.badgeEn, selectedProduct.badgeBn)
+                  : (selectedProduct?.design_variant || T(activeColorObj.nameEn, activeColorObj.nameBn))}
               </h3>
             </div>
           </div>

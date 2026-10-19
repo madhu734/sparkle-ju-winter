@@ -82,7 +82,7 @@ export default function StudioInspector({
           {T('02 · Product Inspection & Direct Campus Order', '০২ · জ্যাকেট বিস্তারিত ও সরাসরি অর্ডার')}
         </span>
         <h2 className="serif-editorial text-3xl sm:text-5xl mt-1">
-          {T('Inspect Details & Complete Pre-Order', 'বিস্তারিত দেখুন ও প্রি-অর্ডার সম্পন্ন করুন')}
+          {T('Inspect Details & Complete Order', 'বিস্তারিত দেখুন ও অর্ডার সম্পন্ন করুন')}
         </h2>
       </div>
 
@@ -167,34 +167,33 @@ export default function StudioInspector({
               backgroundColor: 'var(--card)'
             }}
           >
-            {/* Edition Switch (2 Designs) */}
-            <div>
-              <span className="editorial-label block mb-2">
-                {T('1. Choose Edition (2 Designs Available)', '১. ডিজাইন এডিশন নির্বাচন করুন (২টি ডিজাইন)')}
-              </span>
-              <div className="grid grid-cols-2 gap-2">
-                {DESIGNS.map((d, idx) => (
-                  <button
-                    key={d.id}
-                    type="button"
-                    onClick={() => setSelectedDesignId(d.id)}
-                    className={`editorial-pill !py-2.5 text-center cursor-pointer ${
-                      selectedDesignId === d.id ? 'active font-bold' : ''
-                    }`}
-                  >
-                    <div>{T(d.codeEn, d.codeBn)}</div>
-                    <div className="text-[10px] opacity-80 truncate">{T(d.nameEn.split(' ')[0], d.nameBn.split(' ')[0])}</div>
-                  </button>
-                ))}
+            {/* Selected Item / Tag Display */}
+            {matchedCatalogItem && (
+              <div className="flex items-center justify-between pb-3 border-b" style={{ borderColor: 'var(--line)' }}>
+                <div>
+                  <span className="editorial-label block text-[10px]">
+                    {T('Selected Item', 'নির্বাচিত আইটেম')}
+                  </span>
+                  <div className="font-semibold text-sm sm:text-base mt-0.5">
+                    {matchedCatalogItem.category === 'hoodie'
+                      ? T(matchedCatalogItem.badgeBn || 'জাবি উইন্টার হুডি', matchedCatalogItem.badgeEn || 'JU Winter Hoodie')
+                      : T(matchedCatalogItem.badgeBn || 'বন্ডেড উইন্টার জ্যাকেট', matchedCatalogItem.badgeEn || 'Bonded Winter Jacket')}
+                  </div>
+                </div>
+                {(matchedCatalogItem.badgeEn || matchedCatalogItem.design_variant) && (
+                  <span className="px-2.5 py-1 rounded-full text-xs font-semibold border" style={{ borderColor: 'var(--line)', color: 'var(--ink)' }}>
+                    {T(matchedCatalogItem.badgeEn || matchedCatalogItem.design_variant, matchedCatalogItem.badgeBn || matchedCatalogItem.design_variant)}
+                  </span>
+                )}
               </div>
-            </div>
+            )}
 
             {/* Jacket Colour */}
             <div>
               <span className="editorial-label block mb-2">
                 {matchedCatalogItem?.category === 'hoodie'
-                  ? T('2. Hoodie Colour', '২. হুডির কালার')
-                  : T('2. Jacket Colour', '২. জ্যাকেটের কালার')}
+                  ? T('1. Hoodie Colour', '১. হুডির কালার')
+                  : T('1. Jacket Colour', '১. জ্যাকেটের কালার')}
               </span>
               <div className="flex flex-wrap gap-2.5">
                 {COLORS.map((c) => (
@@ -229,8 +228,8 @@ export default function StudioInspector({
               <div className="flex items-center justify-between mb-2">
                 <span className="editorial-label">
                   {matchedCatalogItem?.category === 'hoodie'
-                    ? T('3. Select Size (Hoodie: M, L, XL)', '৩. সাইজ নির্বাচন করুন (হুডি: M, L, XL)')
-                    : T('3. Select Size (Inches)', '৩. সাইজ নির্বাচন করুন (ইঞ্চি)')}
+                    ? T('2. Select Size (Hoodie: M, L, XL)', '২. সাইজ নির্বাচন করুন (হুডি: M, L, XL)')
+                    : T('2. Select Size (Inches)', '২. সাইজ নির্বাচন করুন (ইঞ্চি)')}
                 </span>
                 <button
                   type="button"

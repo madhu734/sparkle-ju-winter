@@ -50,7 +50,7 @@ export function SizeGuideModal({
           <X className="w-4 h-4" />
         </button>
 
-        <span className="editorial-label">Sparkle ✦ JU Winter Fit 2026</span>
+        <span className="editorial-label">Sparkle ✦ JU Winter Fit</span>
         <h3 className="serif-editorial text-3xl mt-1 mb-2">
           {T('Size Guide (Inches)', 'সাইজ চার্ট (ইঞ্চি)')}
         </h3>
