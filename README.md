@@ -14,8 +14,14 @@ Mobile-first e-commerce web platform for collegiate winter bonded jackets & hood
 ## ✦ Tech Stack
 - **Frontend:** React 19, Vite, Tailwind CSS v4, Lucide React
 - **Backend:** PocketBase (`https://spb.tmadhu.me`)
+- **Admin Portal:** Single-page synchronized management dashboard (`/admin`)
 - **Containerization:** Multi-stage Docker + Alpine Nginx
 - **Hosting:** Self-hosted Coolify PaaS with automated push-to-deploy Git webhooks
+
+## ✦ Live Production Endpoints
+- **Store Website:** [https://sparkleju.duckdns.org](https://sparkleju.duckdns.org)
+- **Admin Control Panel:** [https://sparkleju.duckdns.org/admin](https://sparkleju.duckdns.org/admin)
+  - **Passcode:** `sparkles`
 
 ## ✦ Local Development
 ```bash

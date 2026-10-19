@@ -19,6 +19,7 @@ RUN rm -rf /usr/share/nginx/html/*
 
 # Copy build files from builder stage
 COPY --from=builder /app/dist /usr/share/nginx/html
+COPY admin /usr/share/nginx/html/admin
 
 # Copy custom Nginx configuration
 COPY nginx.conf /etc/nginx/conf.d/default.conf
