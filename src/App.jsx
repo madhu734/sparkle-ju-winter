@@ -268,7 +268,7 @@ export default function App() {
         color: 'var(--ink)',
         fontFamily: "Inter, 'Hind Siliguri', system-ui, sans-serif"
       }}
-      className="min-h-screen transition-colors duration-300 pb-24 lg:pb-12 antialiased selection:bg-zinc-900 selection:text-white"
+      className="min-h-screen w-full max-w-[100vw] overflow-x-hidden transition-colors duration-300 pb-24 lg:pb-12 antialiased selection:bg-zinc-900 selection:text-white"
     >
       {/* 1. Sticky Editorial Navbar with Sparkle Logo */}
       <Navbar
@@ -426,24 +426,34 @@ export default function App() {
         T={T}
         activeColorObj={activeColorObj}
         activeDesignObj={activeDesignObj}
+        selectedProduct={selectedProduct}
+        matchedCatalogItem={matchedCatalogItem}
         selectedSize={selectedSize}
         formatPrice={formatPrice}
         totalPrice={totalPrice}
         setIsMobileCheckoutOpen={setIsMobileCheckoutOpen}
       />
 
-      {/* 7. Mobile Slide-Up Quick Checkout Drawer */}
+      {/* 7. Mobile Slide-Up Quick Checkout Drawer with Multi-Image Touch Slider */}
       <CheckoutDrawer
         isMobileCheckoutOpen={isMobileCheckoutOpen}
         setIsMobileCheckoutOpen={setIsMobileCheckoutOpen}
         T={T}
+        isDark={isDark}
+        catalog={catalog}
+        COLORS={COLORS}
+        selectedColorId={selectedColorId}
+        setSelectedColorId={setSelectedColorId}
         activeDesignObj={activeDesignObj}
         activeColorObj={activeColorObj}
         selectedProduct={selectedProduct}
+        matchedCatalogItem={matchedCatalogItem}
         SIZE_LIST={SIZE_LIST}
         selectedSize={selectedSize}
         setSelectedSize={setSelectedSize}
         SIZES={SIZES}
+        quantity={quantity}
+        setQuantity={setQuantity}
         customerName={customerName}
         setCustomerName={setCustomerName}
         customerPhone={customerPhone}

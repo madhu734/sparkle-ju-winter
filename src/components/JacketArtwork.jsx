@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Sparkles, Camera, Image as ImageIcon } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Sparkles, Camera, Image as ImageIcon, ChevronLeft, ChevronRight } from 'lucide-react';
 
 /**
  * Editorial Brand Logo for Sparkle — JU Winter Edition
@@ -21,7 +21,7 @@ export function SparkleLogo({ className = '', subtitle = true, showImage = true,
             Sparkle
           </span>
           {subtitle && (
-            <span style={{ color: 'var(--mute)' }} className="text-xs tracking-wider uppercase font-medium">
+            <span style={{ color: 'var(--mute)' }} className="hidden sm:inline text-xs tracking-wider uppercase font-medium">
               ✦ JU ’26
             </span>
           )}
@@ -97,28 +97,86 @@ export function ProductMedia({
 }
 
 /**
- * Interactive Multi-Image Gallery with Thumbnail Switcher
- * Used in the Product Detail View & Studio Inspector
+ * Interactive Multi-Image Gallery with Touch-Swipe & Thumbnail Switcher
+ * Used in Mobile Checkout Drawer, Product Detail View & Studio Inspector
  */
 export function ProductGallery({
   images = [],
   colorHex = '#141518',
   colorName = '',
   title = '',
-  isDark = false
+  isDark = false,
+  aspectRatio = 'aspect-[4/4.8]',
+  compact = false
 }) {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [touchStartX, setTouchStartX] = useState(null);
+  const [touchEndX, setTouchEndX] = useState(null);
+
+  // Reset to first image if images array changes
+  useEffect(() => {
+    setActiveIndex(0);
+  }, [images]);
+
   const activeImage = images[activeIndex] || images[0] || '';
 
+  // Swipe sensitivity threshold (in px)
+  const minSwipeDistance = 40;
+
+  const handleTouchStart = (e) => {
+    setTouchEndX(null);
+    setTouchStartX(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e) => {
+    setTouchEndX(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (touchStartX === null || touchEndX === null) return;
+    const distance = touchStartX - touchEndX;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe && images.length > 1) {
+      setActiveIndex((prev) => (prev + 1) % images.length);
+    } else if (isRightSwipe && images.length > 1) {
+      setActiveIndex((prev) => (prev - 1 + images.length) % images.length);
+    }
+    setTouchStartX(null);
+    setTouchEndX(null);
+  };
+
+  const handlePrev = (e) => {
+    e.stopPropagation();
+    if (images.length > 1) {
+      setActiveIndex((prev) => (prev - 1 + images.length) % images.length);
+    }
+  };
+
+  const handleNext = (e) => {
+    e.stopPropagation();
+    if (images.length > 1) {
+      setActiveIndex((prev) => (prev + 1) % images.length);
+    }
+  };
+
   return (
-    <div className="w-full space-y-3">
-      {/* Main Large Image */}
-      <div className="relative aspect-[4/4.8] w-full rounded-2xl overflow-hidden border bg-zinc-950/5 flex items-center justify-center" style={{ borderColor: 'var(--line)' }}>
+    <div className="w-full space-y-2.5 select-none">
+      {/* Main Large Image with Touch Gesture & Nav Controls */}
+      <div
+        className={`relative ${aspectRatio} w-full rounded-2xl overflow-hidden border bg-zinc-950/5 flex items-center justify-center touch-pan-y`}
+        style={{ borderColor: 'var(--line)' }}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+      >
         {activeImage ? (
           <img
             src={activeImage}
             alt={`${title} - Photo ${activeIndex + 1}`}
-            className="w-full h-full object-contain select-none transition-all duration-300"
+            className="w-full h-full object-contain select-none transition-all duration-300 pointer-events-none"
+            loading="eager"
           />
         ) : (
           <ProductMedia
@@ -129,29 +187,82 @@ export function ProductGallery({
           />
         )}
 
+        {/* Counter Badge Pill Top Right */}
         {images.length > 1 && (
-          <div className="absolute top-3 right-3 px-2.5 py-1 rounded-full text-xs font-semibold backdrop-blur-md bg-black/65 text-white">
+          <div className="absolute top-2.5 right-2.5 px-2.5 py-0.5 rounded-full text-[11px] font-semibold backdrop-blur-md bg-black/65 text-white z-10 pointer-events-none">
             {activeIndex + 1} / {images.length}
+          </div>
+        )}
+
+        {/* Left Arrow Button */}
+        {images.length > 1 && (
+          <button
+            type="button"
+            aria-label="Previous image"
+            onClick={handlePrev}
+            className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 sm:w-9 sm:h-9 rounded-full backdrop-blur-md bg-black/40 hover:bg-black/70 text-white flex items-center justify-center transition-all cursor-pointer z-10 active:scale-95 border border-white/20 shadow-md"
+          >
+            <ChevronLeft className="w-5 h-5 -ml-0.5" />
+          </button>
+        )}
+
+        {/* Right Arrow Button */}
+        {images.length > 1 && (
+          <button
+            type="button"
+            aria-label="Next image"
+            onClick={handleNext}
+            className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 sm:w-9 sm:h-9 rounded-full backdrop-blur-md bg-black/40 hover:bg-black/70 text-white flex items-center justify-center transition-all cursor-pointer z-10 active:scale-95 border border-white/20 shadow-md"
+          >
+            <ChevronRight className="w-5 h-5 -mr-0.5" />
+          </button>
+        )}
+
+        {/* Interactive Indicator Dots at the Bottom */}
+        {images.length > 1 && (
+          <div className="absolute bottom-2.5 inset-x-0 flex items-center justify-center gap-1.5 z-10 pointer-events-auto">
+            {images.map((_, idx) => (
+              <button
+                key={idx}
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setActiveIndex(idx);
+                }}
+                className={`transition-all rounded-full cursor-pointer ${
+                  activeIndex === idx
+                    ? 'w-5 h-1.5 bg-white shadow-sm'
+                    : 'w-1.5 h-1.5 bg-white/50 hover:bg-white/80'
+                }`}
+                title={`Photo ${idx + 1}`}
+              />
+            ))}
           </div>
         )}
       </div>
 
-      {/* Thumbnails Strip (Model photo, Fabric close-up, Inner lining, etc.) */}
+      {/* Thumbnails Strip (Tap to view immediately) */}
       {images.length > 1 && (
-        <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1">
+        <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-0.5 px-0.5 w-full min-w-0">
           {images.map((img, idx) => (
             <button
               key={idx}
               type="button"
               onClick={() => setActiveIndex(idx)}
-              className={`relative w-16 h-16 rounded-xl overflow-hidden border-2 transition-all cursor-pointer shrink-0 ${
-                activeIndex === idx ? 'scale-105 shadow-md' : 'opacity-60 hover:opacity-100'
+              className={`relative ${compact ? 'w-12 h-12' : 'w-14 h-14 sm:w-16 sm:h-16'} rounded-xl overflow-hidden border-2 transition-all cursor-pointer shrink-0 ${
+                activeIndex === idx
+                  ? 'scale-105 shadow-md ring-2 ring-amber-500/50'
+                  : 'opacity-60 hover:opacity-100'
               }`}
               style={{
                 borderColor: activeIndex === idx ? 'var(--ink)' : 'var(--line)'
               }}
             >
-              <img src={img} alt={`Thumbnail ${idx + 1}`} className="w-full h-full object-cover" />
+              <img
+                src={img}
+                alt={`Thumbnail ${idx + 1}`}
+                className="w-full h-full object-cover select-none"
+              />
             </button>
           ))}
         </div>

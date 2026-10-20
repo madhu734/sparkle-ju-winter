@@ -6,11 +6,18 @@ export default function MobileStickyBar({
   T,
   activeColorObj,
   activeDesignObj,
+  selectedProduct,
+  matchedCatalogItem,
   selectedSize,
   formatPrice,
   totalPrice,
   setIsMobileCheckoutOpen
 }) {
+  const currentItem = matchedCatalogItem || selectedProduct;
+  const itemTag = currentItem?.badgeEn
+    ? T(currentItem.badgeEn, currentItem.badgeBn)
+    : (currentItem?.design_variant || (currentItem?.category === 'hoodie' ? T('Hoodie', 'হুডি') : T('Jacket', 'জ্যাকেট')));
+
   return (
     <div
       className="lg:hidden fixed bottom-0 inset-x-0 z-30 border-t px-4 py-3 backdrop-blur-lg flex items-center justify-between gap-3 no-print"
@@ -23,8 +30,7 @@ export default function MobileStickyBar({
     >
       <div className="min-w-0">
         <div className="text-[11px] font-medium truncate" style={{ color: 'var(--mute)' }}>
-          {T(activeColorObj.nameEn, activeColorObj.nameBn)} ·{' '}
-          {T(activeDesignObj.codeEn, activeDesignObj.codeBn)} ·{' '}
+          {T(activeColorObj.nameEn, activeColorObj.nameBn)} · {itemTag} ·{' '}
           <strong style={{ color: 'var(--ink)' }}>{selectedSize}</strong>
         </div>
         <div className="serif-editorial text-2xl leading-none mt-0.5">

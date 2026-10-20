@@ -308,15 +308,15 @@ export default function CatalogSection({
             COMPACT MOBILE-FRIENDLY FILTER BAR
         ================================================================== */}
         <div
-          className="p-3.5 sm:p-4 rounded-2xl border mb-6 space-y-3"
+          className="p-3.5 sm:p-4 rounded-2xl border mb-6 space-y-3 w-full min-w-0 overflow-hidden"
           style={{
             borderColor: 'var(--line)',
             backgroundColor: 'var(--card)'
           }}
         >
-          <div className="flex flex-col md:flex-row md:items-center justify-between gap-3">
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 w-full min-w-0">
             {/* Category Filter (All / Jackets / Hoodies) */}
-            <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-0.5">
+            <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-0.5 w-full min-w-0">
               <span className="editorial-label mr-1 shrink-0">Item:</span>
               <button
                 type="button"
@@ -348,7 +348,7 @@ export default function CatalogSection({
             </div>
 
             {/* Color Filter */}
-            <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-0.5">
+            <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar pb-0.5 w-full min-w-0">
               <span className="editorial-label mr-1 shrink-0">Color:</span>
               <button
                 type="button"
@@ -357,7 +357,7 @@ export default function CatalogSection({
                   filterColor === 'all' ? 'active' : ''
                 }`}
               >
-                {T('All (3)', 'সব (৩)')}
+                {T('All (4)', 'সব (৪)')}
               </button>
               {COLORS.map((c) => (
                 <button
@@ -379,7 +379,7 @@ export default function CatalogSection({
 
 
             {/* Size Filter */}
-            <div className="flex items-center gap-1 overflow-x-auto no-scrollbar pb-0.5">
+            <div className="flex items-center gap-1 overflow-x-auto no-scrollbar pb-0.5 w-full min-w-0">
               <span className="editorial-label mr-1 shrink-0">Size:</span>
               <button
                 type="button"
