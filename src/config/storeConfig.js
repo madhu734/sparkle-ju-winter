@@ -99,14 +99,14 @@ export const KEY_FEATURES = [
   }
 ];
 
-// Premium Winter Hoodie Key Features (330± GSM Brushed Fleece)
+// Premium Winter Hoodie Key Features (350+ GSM Brushed Fleece)
 export const HOODIE_FEATURES = [
   {
     icon: 'Shirt',
-    titleEn: '330± GSM Brushed Fleece',
-    titleBn: '৩৩০± জিএসএম ব্রাশড ফ্লিস',
-    descEn: 'Heavyweight premium brushed fleece for genuine winter warmth.',
-    descBn: 'কনকনে শীতের জন্য প্রিমিয়াম ৩৩০± জিএসএম ব্রাশড ফ্লিস ফ্যাব্রিক।'
+    titleEn: '350+ GSM Brushed Fleece',
+    titleBn: '৩৫০+ জিএসএম ব্রাশড ফ্লিস',
+    descEn: 'Heavyweight premium 350+ GSM brushed fleece for genuine winter warmth.',
+    descBn: 'কনকনে শীতের জন্য প্রিমিয়াম ৩৫০+ জিএসএম ব্রাশড ফ্লিস ফ্যাব্রিক।'
   },
   {
     icon: 'Layers',

@@ -150,7 +150,7 @@ export default function StudioInspector({
           >
             <div className="editorial-label mb-2">
               {matchedCatalogItem?.category === 'hoodie'
-                ? '★ Premium Hoodie Specifications (330± GSM):'
+                ? '★ Premium Hoodie Specifications (350+ GSM):'
                 : '★ Premium Bonded Specifications:'}
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">

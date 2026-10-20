@@ -224,7 +224,7 @@ export default function CatalogSection({
                   color: featuresTab === 'hoodie' ? 'var(--onacc)' : 'var(--ink)'
                 }}
               >
-                {T('Hoodie (330± GSM)', 'হুডি (৩৩০± GSM)')}
+                {T('Hoodie (350+ GSM)', 'হুডি (৩৫০+ GSM)')}
               </button>
             </div>
 
@@ -243,7 +243,7 @@ export default function CatalogSection({
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
           {(featuresTab === 'hoodie'
             ? [
-                { title: T('330± GSM Fleece', '৩৩০± জিএসএম ফ্লিস'), sub: T('Brushed warm interior', 'উষ্ণ ব্রাশড ইনার'), icon: Shirt },
+                { title: T('350+ GSM Fleece', '৩৫০+ জিএসএম ফ্লিস'), sub: T('Brushed warm interior', 'উষ্ণ ব্রাশড ইনার'), icon: Shirt },
                 { title: T('Regular Fit', 'রেগুলার ফিট'), sub: T('Comfortable everyday cut', 'দৈনন্দিন আরামদায়ক কাট'), icon: Layers },
                 { title: T('Double Layer Hood', 'ডাবল লেয়ার হুড'), sub: T('Structured ear shield', 'কান ও মাথার উষ্ণ সুরক্ষা'), icon: ShieldCheck },
                 { title: T('Premium Stitching', 'প্রিমিয়াম স্টিচিং'), sub: T('Reinforced dual-needle', 'মজবুত ডাবল নিডেল সেলাই'), icon: Sparkles },
