@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   MapPin,
   Ruler,
@@ -11,6 +11,9 @@ import {
   Feather,
   Wallet,
   Lock,
+  Shirt,
+  Palette,
+  Package,
   ArrowRight,
   Eye,
   CheckCircle2
@@ -25,6 +28,7 @@ export default function CatalogSection({
   SIZES,
   SIZE_LIST,
   KEY_FEATURES,
+  HOODIE_FEATURES,
   CONTACTS,
   PREORDER_PROMO,
   DEFAULT_UNIT_PRICE,
@@ -42,6 +46,12 @@ export default function CatalogSection({
   handleOpenProductDetail,
   setIsSizeChartOpen
 }) {
+  const [featuresTab, setFeaturesTab] = useState(filterCategory === 'hoodie' ? 'hoodie' : 'jacket');
+
+  useEffect(() => {
+    if (filterCategory === 'hoodie') setFeaturesTab('hoodie');
+    else if (filterCategory === 'jacket') setFeaturesTab('jacket');
+  }, [filterCategory]);
   return (
     <>
       {/* ====================================================================
@@ -161,40 +171,94 @@ export default function CatalogSection({
       </section>
 
       {/* ====================================================================
-          2. KEY FEATURES STRIP (PREMIUM BONDED JACKET)
+          2. KEY FEATURES STRIP (PREMIUM BONDED JACKET & WINTER HOODIE)
       ==================================================================== */}
       <section
         id="features"
         className="max-w-7xl mx-auto px-4 sm:px-6 py-8 border-b"
         style={{ borderColor: 'var(--line)' }}
       >
-        <div className="flex items-center justify-between mb-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-4">
           <div>
-            <span className="editorial-label">Craftsmanship & Durability</span>
+            <span className="editorial-label">
+              {featuresTab === 'hoodie' ? 'Craftsmanship & Winter Warmth' : 'Craftsmanship & Durability'}
+            </span>
             <h2 className="serif-editorial text-2xl sm:text-3xl mt-0.5">
-              {T('Premium Bonded Jacket Features', 'প্রিমিয়াম বন্ডেড জ্যাকেটের বিশেষত্ব')}
+              {featuresTab === 'hoodie'
+                ? T('Premium Winter Hoodie Specifications', 'প্রিমিয়াম উইন্টার হুডির বিশেষত্ব (৩৩০± GSM)')
+                : T('Premium Bonded Jacket Features', 'প্রিমিয়াম বন্ডেড জ্যাকেটের বিশেষত্ব')}
             </h2>
           </div>
-          <button
-            type="button"
-            onClick={() => setIsSizeChartOpen(true)}
-            className="text-xs font-medium underline underline-offset-4 flex items-center gap-1 cursor-pointer"
-            style={{ color: 'var(--mute)' }}
-          >
-            <Ruler className="w-3.5 h-3.5" />
-            <span>{T('Size Guide (Inches)', 'সাইজ গাইড')}</span>
-          </button>
+
+          <div className="flex items-center gap-3">
+            {/* Toggle Switch between Jacket Specs and Hoodie Specs */}
+            <div
+              className="inline-flex border rounded-full p-0.5 text-xs font-semibold"
+              style={{ borderColor: 'var(--line)', backgroundColor: isDark ? 'rgba(255,255,255,0.04)' : 'rgba(0,0,0,0.03)' }}
+            >
+              <button
+                type="button"
+                onClick={() => setFeaturesTab('jacket')}
+                className={`px-3 py-1 rounded-full transition cursor-pointer ${
+                  featuresTab === 'jacket'
+                    ? 'shadow-xs font-bold'
+                    : 'opacity-70 hover:opacity-100'
+                }`}
+                style={{
+                  backgroundColor: featuresTab === 'jacket' ? 'var(--accent)' : 'transparent',
+                  color: featuresTab === 'jacket' ? 'var(--onacc)' : 'var(--ink)'
+                }}
+              >
+                {T('Jacket (4oz Peding)', 'জ্যাকেট (৪oz প্যাডিং)')}
+              </button>
+              <button
+                type="button"
+                onClick={() => setFeaturesTab('hoodie')}
+                className={`px-3 py-1 rounded-full transition cursor-pointer ${
+                  featuresTab === 'hoodie'
+                    ? 'shadow-xs font-bold'
+                    : 'opacity-70 hover:opacity-100'
+                }`}
+                style={{
+                  backgroundColor: featuresTab === 'hoodie' ? 'var(--accent)' : 'transparent',
+                  color: featuresTab === 'hoodie' ? 'var(--onacc)' : 'var(--ink)'
+                }}
+              >
+                {T('Hoodie (330± GSM)', 'হুডি (৩৩০± GSM)')}
+              </button>
+            </div>
+
+            <button
+              type="button"
+              onClick={() => setIsSizeChartOpen(true)}
+              className="text-xs font-medium underline underline-offset-4 flex items-center gap-1 cursor-pointer shrink-0"
+              style={{ color: 'var(--mute)' }}
+            >
+              <Ruler className="w-3.5 h-3.5" />
+              <span>{T('Size Guide', 'সাইজ গাইড')}</span>
+            </button>
+          </div>
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
-          {[
-            { title: T('Water Proof', 'ওয়াটার প্রুফ'), sub: T('Rain & fog shield', 'কুয়াশা প্রতিরোধী'), icon: ShieldCheck },
-            { title: T('Double Part', 'ডাবল পার্ট'), sub: T('Heavy winter layer', 'দ্বিগুণ স্তরের ফ্যাব্রিক'), icon: Layers },
-            { title: T('Gorgeous Outlook', 'গর্জিয়াস আউটলুক'), sub: T('Collegiate fit', 'শার্প এডিটোরিয়াল কাট'), icon: Sparkles },
-            { title: T('4oz Peding', '৪ আউন্স প্যাডিং'), sub: T('Warm inner quilt', 'উষ্ণ ইনার লাইনিং'), icon: Feather },
-            { title: T('Inner Pocket', 'ভেতরের পকেট'), sub: T('Safe phone slot', 'মোবাইল/কার্ড পকেট'), icon: Wallet },
-            { title: T('YKK Metal Chain', 'YKK মেটাল চেইন'), sub: T('Ultra-durable', 'অরিজিনাল মেটাল জিপার'), icon: Lock }
-          ].map((f, i) => {
+          {(featuresTab === 'hoodie'
+            ? [
+                { title: T('330± GSM Fleece', '৩৩০± জিএসএম ফ্লিস'), sub: T('Brushed warm interior', 'উষ্ণ ব্রাশড ইনার'), icon: Shirt },
+                { title: T('Regular Fit', 'রেগুলার ফিট'), sub: T('Comfortable everyday cut', 'দৈনন্দিন আরামদায়ক কাট'), icon: Layers },
+                { title: T('Double Layer Hood', 'ডাবল লেয়ার হুড'), sub: T('Structured ear shield', 'কান ও মাথার উষ্ণ সুরক্ষা'), icon: ShieldCheck },
+                { title: T('Premium Stitching', 'প্রিমিয়াম স্টিচিং'), sub: T('Reinforced dual-needle', 'মজবুত ডাবল নিডেল সেলাই'), icon: Sparkles },
+                { title: T('Color Fastness', 'কালার ফাস্টনেস'), sub: T('Guaranteed anti-fade', 'রং অক্ষুণ্ণ থাকার গ্যারান্টি'), icon: Palette },
+                { title: T('1/1 Poly Pack', '১/১ পলি প্যাক'), sub: T('Individual sealed pack', 'ইনডিভিজুয়াল মাস্টার প্যাক'), icon: Package }
+              ]
+            : [
+                { title: T('Water Proof', 'ওয়াটার প্রুফ'), sub: T('Rain & fog shield', 'কুয়াশা প্রতিরোধী'), icon: ShieldCheck },
+                { title: T('Double Part', 'ডাবল পার্ট'), sub: T('Heavy winter layer', 'দ্বিগুণ স্তরের ফ্যাব্রিক'), icon: Layers },
+                { title: T('Gorgeous Outlook', 'গর্জিয়াস আউটলুক'), sub: T('Collegiate fit', 'শার্প এডিটোরিয়াল কাট'), icon: Sparkles },
+                { title: T('4oz Peding', '৪ আউন্স প্যাডিং'), sub: T('Warm inner quilt', 'উষ্ণ ইনার লাইনিং'), icon: Feather },
+                { title: T('Inner Pocket', 'ভেতরের পকেট'), sub: T('Safe phone slot', 'মোবাইল/কার্ড পকেট'), icon: Wallet },
+                { title: T('YKK Metal Chain', 'YKK মেটাল চেইন'), sub: T('Ultra-durable', 'অরিজিনাল মেটাল জিপার'), icon: Lock }
+              ]
+          ).map((f, i) => {
             const Icon = f.icon;
             return (
               <div

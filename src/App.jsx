@@ -14,6 +14,7 @@ import {
   DELIVERY_ZONES,
   PAYMENT_METHODS,
   KEY_FEATURES,
+  HOODIE_FEATURES,
   CONTACTS,
   PREORDER_PROMO,
   formatPrice
@@ -120,11 +121,20 @@ export default function App() {
 
   // Match active studio selection with any uploaded PocketBase image URL
   const matchedCatalogItem = useMemo(() => {
+    const curCat = selectedProduct?.category || 'jacket';
     return (
       catalog.find(
         (item) =>
-          item.colorId === selectedColorId && item.designId === selectedDesignId
-      ) || selectedProduct
+          item.category === curCat &&
+          item.colorId === selectedColorId &&
+          item.designId === selectedDesignId
+      ) ||
+      catalog.find(
+        (item) =>
+          item.category === curCat &&
+          item.colorId === selectedColorId
+      ) ||
+      selectedProduct
     );
   }, [catalog, selectedColorId, selectedDesignId, selectedProduct]);
 
@@ -280,6 +290,7 @@ export default function App() {
         SIZES={SIZES}
         SIZE_LIST={SIZE_LIST}
         KEY_FEATURES={KEY_FEATURES}
+        HOODIE_FEATURES={HOODIE_FEATURES}
         CONTACTS={CONTACTS}
         PREORDER_PROMO={PREORDER_PROMO}
         DEFAULT_UNIT_PRICE={DEFAULT_UNIT_PRICE}
@@ -304,11 +315,13 @@ export default function App() {
         checkoutSectionRef={checkoutSectionRef}
         T={T}
         isDark={isDark}
+        catalog={catalog}
         COLORS={COLORS}
         DESIGNS={DESIGNS}
         SIZES={SIZES}
         SIZE_LIST={SIZE_LIST}
         KEY_FEATURES={KEY_FEATURES}
+        HOODIE_FEATURES={HOODIE_FEATURES}
         CONTACTS={CONTACTS}
         PREORDER_PROMO={PREORDER_PROMO}
         DELIVERY_ZONES={DELIVERY_ZONES}

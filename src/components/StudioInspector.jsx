@@ -19,11 +19,13 @@ export default function StudioInspector({
   checkoutSectionRef,
   T,
   isDark,
+  catalog = [],
   COLORS,
   DESIGNS,
   SIZES,
   SIZE_LIST,
   KEY_FEATURES,
+  HOODIE_FEATURES,
   CONTACTS,
   PREORDER_PROMO,
   DELIVERY_ZONES,
@@ -140,14 +142,21 @@ export default function StudioInspector({
             </div>
           </div>
 
-          {/* Key Jacket Features */}
+          {/* Key Jacket / Hoodie Features */}
           <div
             className="p-4 rounded-2xl border space-y-2 text-xs"
             style={{ borderColor: 'var(--line)', backgroundColor: 'var(--card)' }}
           >
-            <div className="editorial-label mb-2">★ Premium Bonded Specifications:</div>
+            <div className="editorial-label mb-2">
+              {matchedCatalogItem?.category === 'hoodie'
+                ? '★ Premium Hoodie Specifications (330± GSM):'
+                : '★ Premium Bonded Specifications:'}
+            </div>
             <div className="grid grid-cols-2 gap-2 text-xs">
-              {KEY_FEATURES.map((kf, i) => (
+              {(matchedCatalogItem?.category === 'hoodie'
+                ? (HOODIE_FEATURES || KEY_FEATURES)
+                : KEY_FEATURES
+              ).map((kf, i) => (
                 <div key={i} className="flex items-center gap-1.5">
                   <span className="text-amber-500">★</span>
                   <span className="font-medium">{T(kf.titleEn, kf.titleBn)}</span>
@@ -188,7 +197,7 @@ export default function StudioInspector({
               </div>
             )}
 
-            {/* Jacket Colour */}
+            {/* Product Colour */}
             <div>
               <span className="editorial-label block mb-2">
                 {matchedCatalogItem?.category === 'hoodie'
@@ -196,7 +205,12 @@ export default function StudioInspector({
                   : T('1. Jacket Colour', '১. জ্যাকেটের কালার')}
               </span>
               <div className="flex flex-wrap gap-2.5">
-                {COLORS.map((c) => (
+                {(
+                  COLORS.filter((c) => {
+                    const cat = matchedCatalogItem?.category || 'jacket';
+                    return catalog.length === 0 || catalog.some((item) => (item.category || 'jacket') === cat && item.colorId === c.id);
+                  })
+                ).map((c) => (
                   <button
                     key={c.id}
                     type="button"
