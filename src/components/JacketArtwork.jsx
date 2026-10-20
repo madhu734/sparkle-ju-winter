@@ -162,10 +162,10 @@ export function ProductGallery({
   };
 
   return (
-    <div className="w-full space-y-2.5 select-none">
+    <div className="w-full min-w-0 max-w-full space-y-2.5 select-none overflow-hidden">
       {/* Main Large Image with Touch Gesture & Nav Controls */}
       <div
-        className={`relative ${aspectRatio} w-full rounded-2xl overflow-hidden border bg-zinc-950/5 flex items-center justify-center touch-pan-y`}
+        className={`relative ${aspectRatio} w-full max-w-full rounded-2xl overflow-hidden border bg-zinc-950/5 flex items-center justify-center touch-pan-y`}
         style={{ borderColor: 'var(--line)' }}
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
@@ -243,7 +243,7 @@ export function ProductGallery({
 
       {/* Thumbnails Strip (Tap to view immediately) */}
       {images.length > 1 && (
-        <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-0.5 px-0.5 w-full min-w-0">
+        <div className="flex items-center gap-2 overflow-x-auto no-scrollbar py-0.5 px-0.5 w-full min-w-0 max-w-full">
           {images.map((img, idx) => (
             <button
               key={idx}

@@ -76,7 +76,7 @@ export default function StudioInspector({
     <section
       id="studio"
       ref={studioSectionRef}
-      className="max-w-7xl mx-auto px-3 sm:px-6 py-8 sm:py-16 border-t w-full min-w-0 overflow-hidden"
+      className="max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-16 border-t w-full min-w-0 max-w-full"
       style={{ borderColor: 'var(--line)' }}
     >
       <div className="mb-5 sm:mb-8">
@@ -88,9 +88,9 @@ export default function StudioInspector({
         </h2>
       </div>
 
-      <div className="grid lg:grid-cols-12 gap-8 lg:gap-14 items-start">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-start w-full min-w-0 max-w-full">
         {/* LEFT COLUMN: MULTI-IMAGE GALLERY & FEATURES */}
-        <div className="lg:col-span-6 lg:sticky lg:top-20 space-y-5">
+        <div className="lg:col-span-6 lg:sticky lg:top-20 space-y-5 w-full min-w-0 max-w-full">
           {/* Multi-Image Gallery with Thumbnails (Model photos, real fabric, angles) */}
           <ProductGallery
             images={images}
@@ -117,11 +117,11 @@ export default function StudioInspector({
               {PREORDER_PROMO.locationBn} — স্যাম্পল দেখে সাইজ নিশ্চিত হতে সরাসরি কল বা WhatsApp করতে পারেন:
             </p>
 
-            <div className="flex flex-wrap gap-2 pt-1">
+            <div className="flex flex-col sm:flex-row flex-wrap gap-2 pt-1">
               {CONTACTS.map((cnt) => (
                 <div
                   key={cnt.name}
-                  className="px-3 py-1.5 rounded-xl border flex items-center gap-2.5 text-xs"
+                  className="px-3 py-1.5 rounded-xl border flex items-center justify-between sm:justify-start gap-2.5 text-xs"
                   style={{ borderColor: 'var(--line)' }}
                 >
                   <span className="font-semibold">{cnt.name}:</span>
@@ -168,10 +168,10 @@ export default function StudioInspector({
         </div>
 
         {/* RIGHT COLUMN: CONFIGURATION & CHECKOUT FORM */}
-        <div ref={checkoutSectionRef} className="lg:col-span-6 space-y-5 w-full min-w-0">
+        <div ref={checkoutSectionRef} className="lg:col-span-6 space-y-5 w-full min-w-0 max-w-full">
           {/* Step 1: Edition & Color Switcher */}
           <div
-            className="p-4 sm:p-6 rounded-2xl border space-y-4 sm:space-y-5 w-full min-w-0"
+            className="p-4 sm:p-6 rounded-2xl border space-y-4 sm:space-y-5 w-full min-w-0 max-w-full"
             style={{
               borderColor: 'var(--line)',
               backgroundColor: 'var(--card)'
@@ -179,19 +179,19 @@ export default function StudioInspector({
           >
             {/* Selected Item / Tag Display */}
             {matchedCatalogItem && (
-              <div className="flex items-center justify-between pb-3 border-b" style={{ borderColor: 'var(--line)' }}>
-                <div>
+              <div className="flex flex-wrap items-center justify-between gap-2 pb-3 border-b min-w-0" style={{ borderColor: 'var(--line)' }}>
+                <div className="min-w-0 flex-1">
                   <span className="editorial-label block text-[10px]">
                     {T('Selected Item', 'নির্বাচিত আইটেম')}
                   </span>
-                  <div className="font-semibold text-sm sm:text-base mt-0.5">
+                  <div className="font-semibold text-sm sm:text-base mt-0.5 truncate">
                     {matchedCatalogItem.category === 'hoodie'
                       ? T(matchedCatalogItem.badgeBn || 'জাবি উইন্টার হুডি', matchedCatalogItem.badgeEn || 'JU Winter Hoodie')
                       : T(matchedCatalogItem.badgeBn || 'বন্ডেড উইন্টার জ্যাকেট', matchedCatalogItem.badgeEn || 'Bonded Winter Jacket')}
                   </div>
                 </div>
                 {(matchedCatalogItem.badgeEn || matchedCatalogItem.design_variant) && (
-                  <span className="px-2.5 py-1 rounded-full text-xs font-semibold border" style={{ borderColor: 'var(--line)', color: 'var(--ink)' }}>
+                  <span className="px-2.5 py-1 rounded-full text-xs font-semibold border shrink-0" style={{ borderColor: 'var(--line)', color: 'var(--ink)' }}>
                     {T(matchedCatalogItem.badgeEn || matchedCatalogItem.design_variant, matchedCatalogItem.badgeBn || matchedCatalogItem.design_variant)}
                   </span>
                 )}
@@ -239,8 +239,8 @@ export default function StudioInspector({
             </div>
 
             {/* Size & Quantity with Exact In-Inch Measurements */}
-            <div className="pt-3 border-t" style={{ borderColor: 'var(--line)' }}>
-              <div className="flex items-center justify-between mb-2">
+            <div className="pt-3 border-t w-full min-w-0" style={{ borderColor: 'var(--line)' }}>
+              <div className="flex flex-wrap items-center justify-between gap-1.5 mb-2">
                 <span className="editorial-label">
                   {matchedCatalogItem?.category === 'hoodie'
                     ? T('2. Select Size (Hoodie: M, L, XL)', '২. সাইজ নির্বাচন করুন (হুডি: M, L, XL)')
@@ -249,7 +249,7 @@ export default function StudioInspector({
                 <button
                   type="button"
                   onClick={() => setIsSizeChartOpen(true)}
-                  className="text-xs underline underline-offset-4 flex items-center gap-1 cursor-pointer"
+                  className="text-xs underline underline-offset-4 flex items-center gap-1 cursor-pointer shrink-0"
                   style={{ color: 'var(--mute)' }}
                 >
                   <Ruler className="w-3.5 h-3.5" />
@@ -306,7 +306,7 @@ export default function StudioInspector({
           {/* Campus Delivery & Payment Form */}
           <form
             onSubmit={handleOrderSubmit}
-            className="p-4 sm:p-6 rounded-2xl border space-y-4 sm:space-y-5 w-full min-w-0"
+            className="p-4 sm:p-6 rounded-2xl border space-y-4 sm:space-y-5 w-full min-w-0 max-w-full"
             style={{
               borderColor: 'var(--line)',
               backgroundColor: 'var(--card)'

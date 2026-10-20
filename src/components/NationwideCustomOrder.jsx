@@ -48,8 +48,8 @@ export default function NationwideCustomOrder({ T, isDark }) {
 
   const whatsappMessage = encodeURIComponent(
     T(
-      "Hello Ashraful! I would like to inquire about ordering custom jackets/hoodies for our university/organization. Can we discuss the pricing and design details?",
-      "হ্যালো আশরাফুল ভাই! আমাদের ভার্সিটি/প্রতিষ্ঠানের জন্য কাস্টম জ্যাকেট/হুডি অর্ডারের বিষয়ে কথা বলতে চাই। বিস্তারিত ডিজাইন ও প্রাইসিং নিয়ে আলোচনা করা যাবে?"
+      "Hello! I would like to inquire about ordering custom jackets/hoodies for our university/organization. Can we discuss the pricing and design details?",
+      "হ্যালো! আমাদের ভার্সিটি/প্রতিষ্ঠানের জন্য কাস্টম জ্যাকেট/হুডি অর্ডারের বিষয়ে কথা বলতে চাই। বিস্তারিত ডিজাইন ও প্রাইসিং নিয়ে আলোচনা করা যাবে?"
     )
   );
 
@@ -85,33 +85,27 @@ export default function NationwideCustomOrder({ T, isDark }) {
             </p>
           </div>
 
-          {/* Direct Contact CTAs to Ashraful */}
-          <div className="w-full sm:w-auto shrink-0 flex flex-col sm:flex-row lg:flex-col gap-2.5">
-            <div className="text-xs font-medium" style={{ color: 'var(--mute)' }}>
-              {T('Custom Order Representative:', 'কাস্টম অর্ডার প্রতিনিধি:')}{' '}
-              <span className="font-semibold" style={{ color: 'var(--ink)' }}>Ashraful</span>
-            </div>
-            <div className="flex flex-wrap sm:flex-nowrap gap-2">
-              <a
-                href={`https://wa.me/${ashrafulWhatsapp}?text=${whatsappMessage}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl font-medium text-xs sm:text-sm text-white bg-emerald-600 hover:bg-emerald-700 active:scale-[0.98] transition-all shadow-sm"
-              >
-                <MessageCircle className="w-4 h-4" />
-                <span>{T('WhatsApp Ashraful', 'আশরাফুল (হোয়াটসঅ্যাপ)')}</span>
-                <ArrowUpRight className="w-3.5 h-3.5 opacity-70" />
-              </a>
+          {/* Direct Contact CTAs (WhatsApp & Call) */}
+          <div className="w-full sm:w-auto shrink-0 flex flex-wrap sm:flex-nowrap gap-2">
+            <a
+              href={`https://wa.me/${ashrafulWhatsapp}?text=${whatsappMessage}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl font-medium text-xs sm:text-sm text-white bg-emerald-600 hover:bg-emerald-700 active:scale-[0.98] transition-all shadow-sm"
+            >
+              <MessageCircle className="w-4 h-4" />
+              <span>{T('WhatsApp', 'হোয়াটসঅ্যাপ')}</span>
+              <ArrowUpRight className="w-3.5 h-3.5 opacity-70" />
+            </a>
 
-              <a
-                href={`tel:${ashrafulCleanPhone}`}
-                className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl font-medium text-xs sm:text-sm border hover:bg-black/5 dark:hover:bg-white/5 active:scale-[0.98] transition-all"
-                style={{ borderColor: 'var(--line)', color: 'var(--ink)' }}
-              >
-                <Phone className="w-4 h-4 text-blue-500" />
-                <span>{ashrafulPhone}</span>
-              </a>
-            </div>
+            <a
+              href={`tel:${ashrafulCleanPhone}`}
+              className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl font-medium text-xs sm:text-sm border hover:bg-black/5 dark:hover:bg-white/5 active:scale-[0.98] transition-all"
+              style={{ borderColor: 'var(--line)', color: 'var(--ink)' }}
+            >
+              <Phone className="w-4 h-4 text-blue-500" />
+              <span>{ashrafulPhone}</span>
+            </a>
           </div>
         </div>
 
