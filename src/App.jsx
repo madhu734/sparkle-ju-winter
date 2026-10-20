@@ -23,6 +23,7 @@ import {
 import { fetchPocketBaseProducts, submitPocketBaseOrder } from './services/pocketbase';
 
 import Navbar from './components/Navbar';
+import NationwideCustomOrder from './components/NationwideCustomOrder';
 import CatalogSection from './components/CatalogSection';
 import StudioInspector from './components/StudioInspector';
 import CustomPreOrderSection from './components/CustomPreOrderSection';
@@ -281,7 +282,13 @@ export default function App() {
         T={T}
       />
 
-      {/* 2. Pre-Order Spotlight Banner, Key Features & 2-Col Compact Grid */}
+      {/* 2. Nationwide Custom Pre-Order Banner (Any University / Organization) */}
+      <NationwideCustomOrder
+        T={T}
+        isDark={isDark}
+      />
+
+      {/* 3. Pre-Order Spotlight Banner, Key Features & 2-Col Compact Grid */}
       <CatalogSection
         T={T}
         isDark={isDark}
