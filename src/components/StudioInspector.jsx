@@ -76,14 +76,14 @@ export default function StudioInspector({
     <section
       id="studio"
       ref={studioSectionRef}
-      className="max-w-7xl mx-auto px-4 sm:px-6 py-10 sm:py-16 border-t"
+      className="max-w-7xl mx-auto px-3 sm:px-6 py-8 sm:py-16 border-t w-full min-w-0 overflow-hidden"
       style={{ borderColor: 'var(--line)' }}
     >
-      <div className="mb-6 sm:mb-8">
+      <div className="mb-5 sm:mb-8">
         <span className="editorial-label">
           {T('02 · Product Inspection & Direct Campus Order', '০২ · জ্যাকেট বিস্তারিত ও সরাসরি অর্ডার')}
         </span>
-        <h2 className="serif-editorial text-3xl sm:text-5xl mt-1">
+        <h2 className="serif-editorial text-2xl sm:text-4xl lg:text-5xl mt-1">
           {T('Inspect Details & Complete Order', 'বিস্তারিত দেখুন ও অর্ডার সম্পন্ন করুন')}
         </h2>
       </div>
@@ -98,6 +98,7 @@ export default function StudioInspector({
             colorName={T(activeColorObj.nameEn, activeColorObj.nameBn)}
             title={T(activeDesignObj.nameEn, activeDesignObj.nameBn)}
             isDark={isDark}
+            aspectRatio="aspect-[4/3.8] sm:aspect-[4/4.8]"
           />
 
           {/* Trial Spot Notice Box */}
@@ -123,7 +124,7 @@ export default function StudioInspector({
                   className="px-3 py-1.5 rounded-xl border flex items-center gap-2.5 text-xs"
                   style={{ borderColor: 'var(--line)' }}
                 >
-                  <span className="font-semibold">{cnt.name} ({T(cnt.roleEn, cnt.roleBn)}):</span>
+                  <span className="font-semibold">{cnt.name}:</span>
                   <a href={`tel:${cnt.cleanPhone}`} className="hover:underline flex items-center gap-1 font-mono">
                     <Phone className="w-3 h-3 text-blue-500" />
                     <span>{cnt.phone}</span>
@@ -152,14 +153,14 @@ export default function StudioInspector({
                 ? '★ Premium Hoodie Specifications (330± GSM):'
                 : '★ Premium Bonded Specifications:'}
             </div>
-            <div className="grid grid-cols-2 gap-2 text-xs">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
               {(matchedCatalogItem?.category === 'hoodie'
                 ? (HOODIE_FEATURES || KEY_FEATURES)
                 : KEY_FEATURES
               ).map((kf, i) => (
-                <div key={i} className="flex items-center gap-1.5">
-                  <span className="text-amber-500">★</span>
-                  <span className="font-medium">{T(kf.titleEn, kf.titleBn)}</span>
+                <div key={i} className="flex items-start gap-1.5">
+                  <span className="text-amber-500 shrink-0 mt-0.5">★</span>
+                  <span className="font-medium leading-snug">{T(kf.titleEn, kf.titleBn)}</span>
                 </div>
               ))}
             </div>
@@ -167,10 +168,10 @@ export default function StudioInspector({
         </div>
 
         {/* RIGHT COLUMN: CONFIGURATION & CHECKOUT FORM */}
-        <div ref={checkoutSectionRef} className="lg:col-span-6 space-y-6">
+        <div ref={checkoutSectionRef} className="lg:col-span-6 space-y-5 w-full min-w-0">
           {/* Step 1: Edition & Color Switcher */}
           <div
-            className="p-5 sm:p-6 rounded-2xl border space-y-5"
+            className="p-4 sm:p-6 rounded-2xl border space-y-4 sm:space-y-5 w-full min-w-0"
             style={{
               borderColor: 'var(--line)',
               backgroundColor: 'var(--card)'
@@ -198,13 +199,13 @@ export default function StudioInspector({
             )}
 
             {/* Product Colour */}
-            <div>
+            <div className="w-full min-w-0">
               <span className="editorial-label block mb-2">
                 {matchedCatalogItem?.category === 'hoodie'
                   ? T('1. Hoodie Colour', '১. হুডির কালার')
                   : T('1. Jacket Colour', '১. জ্যাকেটের কালার')}
               </span>
-              <div className="flex flex-wrap gap-2.5">
+              <div className="flex flex-wrap gap-2 w-full min-w-0">
                 {(
                   COLORS.filter((c) => {
                     const cat = matchedCatalogItem?.category || 'jacket';
@@ -215,7 +216,7 @@ export default function StudioInspector({
                     key={c.id}
                     type="button"
                     onClick={() => setSelectedColorId(c.id)}
-                    className="flex items-center gap-2 px-3 py-2 rounded-xl border text-xs font-medium transition cursor-pointer"
+                    className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border text-xs font-medium transition cursor-pointer shrink-0"
                     style={{
                       borderColor:
                         selectedColorId === c.id ? 'var(--ink)' : 'var(--line)',
@@ -228,7 +229,7 @@ export default function StudioInspector({
                     }}
                   >
                     <span
-                      className="w-3.5 h-3.5 rounded-full border border-white/40"
+                      className="w-3.5 h-3.5 rounded-full border border-white/40 shrink-0"
                       style={{ backgroundColor: c.hex }}
                     />
                     <span>{T(c.nameEn, c.nameBn)}</span>
@@ -305,7 +306,7 @@ export default function StudioInspector({
           {/* Campus Delivery & Payment Form */}
           <form
             onSubmit={handleOrderSubmit}
-            className="p-5 sm:p-6 rounded-2xl border space-y-5"
+            className="p-4 sm:p-6 rounded-2xl border space-y-4 sm:space-y-5 w-full min-w-0"
             style={{
               borderColor: 'var(--line)',
               backgroundColor: 'var(--card)'

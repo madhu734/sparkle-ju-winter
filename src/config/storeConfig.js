@@ -21,16 +21,12 @@ export const DEFAULT_HOODIE_PRICE = 650;
 export const CONTACTS = [
   {
     name: 'Sami',
-    roleEn: 'English: 51',
-    roleBn: 'ইংরেজি: ৫১তম ব্যাচ',
     phone: '01889-279331',
     cleanPhone: '01889279331',
     whatsapp: '8801889279331'
   },
   {
     name: 'Ashraful',
-    roleEn: 'Philosophy-47',
-    roleBn: 'ফিলোসফি-৪৭',
     phone: '01985-968545',
     cleanPhone: '01985968545',
     whatsapp: '8801985968545'
@@ -149,39 +145,39 @@ export const HOODIE_FEATURES = [
   }
 ];
 
-// Core Product Color Options
+// Core Product Color Options (Common/Simple Names)
 export const COLORS = [
   {
     id: 'Black',
     hex: '#141518',
     secondaryHex: '#22242a',
     ribHex: '#0b0c0e',
-    nameEn: 'Jet Black',
-    nameBn: 'জেট ব্ল্যাক'
+    nameEn: 'Black',
+    nameBn: 'ব্ল্যাক'
   },
   {
     id: 'Dark Navy Blue',
     hex: '#162238',
     secondaryHex: '#203152',
     ribHex: '#0e1626',
-    nameEn: 'Dark Navy Blue',
-    nameBn: 'ডার্ক নেভি ব্লু'
+    nameEn: 'Navy Blue',
+    nameBn: 'নেভি ব্লু'
   },
   {
     id: 'Maroon',
     hex: '#4E1622',
     secondaryHex: '#681e2e',
     ribHex: '#360e17',
-    nameEn: 'Deep Maroon',
-    nameBn: 'ডিপ মেরুন'
+    nameEn: 'Maroon',
+    nameBn: 'মেরুন'
   },
   {
     id: 'Brown',
     hex: '#4A3B32',
     secondaryHex: '#5C4A3E',
     ribHex: '#382B24',
-    nameEn: 'Earth Brown',
-    nameBn: 'আর্থ ব্রাউন'
+    nameEn: 'Brown',
+    nameBn: 'ব্রাউন'
   }
 ];
 

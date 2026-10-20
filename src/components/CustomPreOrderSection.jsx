@@ -84,9 +84,6 @@ export default function CustomPreOrderSection({
               <div>
                 <div className="flex items-center gap-2">
                   <span className="serif-editorial text-2xl font-bold">{cnt.name}</span>
-                  <span className="px-2 py-0.5 rounded-full text-[11px] font-semibold border" style={{ borderColor: 'var(--line)', color: 'var(--mute)' }}>
-                    {T(cnt.roleEn, cnt.roleBn)}
-                  </span>
                 </div>
                 <div className="text-sm font-mono mt-1 font-semibold" style={{ color: 'var(--ink)' }}>
                   {cnt.phone}

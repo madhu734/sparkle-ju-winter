@@ -133,7 +133,7 @@ export default function CatalogSection({
                     }}
                   >
                     <span className="text-xs font-semibold" style={{ color: 'var(--ink)' }}>
-                      {cnt.name} <span className="opacity-70 text-[11px] font-normal">({T(cnt.roleEn, cnt.roleBn)})</span>
+                      {cnt.name}
                     </span>
 
                     {/* Direct Dialer Call Icon */}
@@ -372,7 +372,7 @@ export default function CatalogSection({
                     className="w-2.5 h-2.5 rounded-full border border-white/40 shrink-0"
                     style={{ backgroundColor: c.hex }}
                   />
-                  <span>{T(c.nameEn.split(' ')[0], c.nameBn)}</span>
+                  <span>{T(c.nameEn, c.nameBn)}</span>
                 </button>
               ))}
             </div>
