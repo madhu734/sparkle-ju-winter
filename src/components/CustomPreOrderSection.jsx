@@ -103,8 +103,8 @@ export default function CustomPreOrderSection({
                 <a
                   href={`https://wa.me/${cnt.whatsapp}?text=${encodeURIComponent(
                     T(
-                      `Hello ${cnt.name}! I would like to inquire about the Sparkle JU Winter Jacket (Trial & Pre-Order).`,
-                      `হ্যালো ${cnt.name}! আমি স্পার্কল জাবি উইন্টার জ্যাকেটের ট্রায়াল ও প্রি-অর্ডারের বিষয়ে কথা বলতে চাই।`
+                      `Hello ${cnt.name}! I would like to inquire about The Look JU Winter Jacket (Trial & Pre-Order).`,
+                      `হ্যালো ${cnt.name}! আমি দ্য লুক জাবি উইন্টার জ্যাকেটের ট্রায়াল ও প্রি-অর্ডারের বিষয়ে কথা বলতে চাই।`
                     )
                   )}`}
                   target="_blank"

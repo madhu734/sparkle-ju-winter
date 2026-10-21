@@ -141,7 +141,7 @@ export default function CheckoutDrawer({
               images={activeImages}
               colorHex={activeColorObj.hex}
               colorName={T(activeColorObj.nameEn, activeColorObj.nameBn)}
-              title={currentItem?.badgeEn || (itemCategory === 'hoodie' ? 'Sparkle Hoodie' : 'Sparkle Jacket')}
+              title={currentItem?.badgeEn || (itemCategory === 'hoodie' ? 'The Look Hoodie' : 'The Look Jacket')}
               isDark={isDark}
               aspectRatio="aspect-[4/4.2]"
               compact={true}

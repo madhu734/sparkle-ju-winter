@@ -229,7 +229,7 @@ export const HOODIE_SIZES_MAP = {
 export const DEFAULT_CATALOG = [
   // --- Bonded Winter Jackets (৳1,350) ---
   {
-    id: 'spk-jkt-blk',
+    id: 'tl-jkt-blk',
     category: 'jacket',
     colorId: 'Black',
     designId: 'JU Signature Bonded Jacket',
@@ -243,7 +243,7 @@ export const DEFAULT_CATALOG = [
     front_image_url: ''
   },
   {
-    id: 'spk-jkt-nvy',
+    id: 'tl-jkt-nvy',
     category: 'jacket',
     colorId: 'Dark Navy Blue',
     designId: 'JU Signature Bonded Jacket',
@@ -257,7 +257,7 @@ export const DEFAULT_CATALOG = [
     front_image_url: ''
   },
   {
-    id: 'spk-jkt-mrn',
+    id: 'tl-jkt-mrn',
     category: 'jacket',
     colorId: 'Maroon',
     designId: 'JU Signature Bonded Jacket',
@@ -272,7 +272,7 @@ export const DEFAULT_CATALOG = [
   },
   // --- Winter Hoodies (৳650, Sizes: M, L, XL) ---
   {
-    id: 'spk-hd-blk',
+    id: 'tl-hd-blk',
     category: 'hoodie',
     colorId: 'Black',
     designId: 'JU Collegiate Winter Hoodie',
@@ -286,7 +286,7 @@ export const DEFAULT_CATALOG = [
     front_image_url: ''
   },
   {
-    id: 'spk-hd-nvy',
+    id: 'tl-hd-nvy',
     category: 'hoodie',
     colorId: 'Dark Navy Blue',
     designId: 'JU Collegiate Winter Hoodie',
@@ -300,7 +300,7 @@ export const DEFAULT_CATALOG = [
     front_image_url: ''
   },
   {
-    id: 'spk-hd-brn',
+    id: 'tl-hd-brn',
     category: 'hoodie',
     colorId: 'Brown',
     designId: 'JU Collegiate Winter Hoodie',

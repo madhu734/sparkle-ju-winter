@@ -221,7 +221,7 @@ export default function App() {
     const savedToPocketBase = await submitPocketBaseOrder(orderPayload);
 
     const generatedOrderId =
-      'SPK-' +
+      'TL-' +
       Date.now().toString(36).toUpperCase().slice(-5) +
       Math.random().toString(36).slice(2, 4).toUpperCase();
 
@@ -394,8 +394,8 @@ export default function App() {
         >
           <div>
             <div className="flex items-center gap-1.5 font-bold mb-1" style={{ color: 'var(--ink)' }}>
-              <Sparkles className="w-4 h-4 text-amber-500 fill-amber-500" />
-              <span className="serif-editorial text-xl">Sparkle — JU Winter Edition</span>
+              <img src="/thelook-logo.svg" alt="The Look" className="w-5 h-5 rounded object-contain border border-amber-500/30" />
+              <span className="serif-editorial text-xl">The Look — JU Winter Edition</span>
             </div>
             <p className="text-xs">
               {T(

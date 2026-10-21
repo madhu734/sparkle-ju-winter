@@ -150,8 +150,8 @@ export default function CatalogSection({
                     <a
                       href={`https://wa.me/${cnt.whatsapp}?text=${encodeURIComponent(
                         T(
-                          `Hi ${cnt.name}! I would like to inquire about the Sparkle JU Winter Collection (Trial & Order).`,
-                          `হ্যালো ${cnt.name}! আমি স্পার্কল জাবি উইন্টার কালেকশনের ট্রায়াল ও অর্ডারের বিষয়ে জানতে চাই।`
+                          `Hi ${cnt.name}! I would like to inquire about The Look JU Winter Collection (Trial & Order).`,
+                          `হ্যালো ${cnt.name}! আমি দ্য লুক জাবি উইন্টার কালেকশনের ট্রায়াল ও অর্ডারের বিষয়ে জানতে চাই।`
                         )
                       )}`}
                       target="_blank"
@@ -499,8 +499,8 @@ export default function CatalogSection({
                     {/* Title */}
                     <h3 className="serif-editorial text-base sm:text-lg leading-snug line-clamp-2">
                       {item.badgeEn
-                        ? (item.category === 'hoodie' ? `Sparkle Hoodie · ${T(item.badgeEn, item.badgeBn)}` : `Sparkle Jacket · ${T(item.badgeEn, item.badgeBn)}`)
-                        : (item.design_variant || (item.category === 'hoodie' ? T('Sparkle Collegiate Hoodie', 'স্পার্কল কলেজিয়েট হুডি') : T('Sparkle Bonded Jacket', 'স্পার্কল বন্ডেড জ্যাকেট')))}
+                        ? (item.category === 'hoodie' ? `The Look Hoodie · ${T(item.badgeEn, item.badgeBn)}` : `The Look Jacket · ${T(item.badgeEn, item.badgeBn)}`)
+                        : (item.design_variant || (item.category === 'hoodie' ? T('The Look Collegiate Hoodie', 'দ্য লুক কলেজিয়েট হুডি') : T('The Look Bonded Jacket', 'দ্য লুক বন্ডেড জ্যাকেট')))}
                     </h3>
 
                     {/* Price */}

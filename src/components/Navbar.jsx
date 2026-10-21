@@ -1,6 +1,6 @@
 import React from 'react';
 import { Ruler, Sun, Moon } from 'lucide-react';
-import { SparkleLogo } from './JacketArtwork';
+import { TheLookLogo } from './JacketArtwork';
 
 export default function Navbar({
   lang,
@@ -22,7 +22,7 @@ export default function Navbar({
       <div className="max-w-7xl mx-auto px-3 sm:px-6 h-14 sm:h-16 flex items-center justify-between gap-2">
         {/* Brand Logo */}
         <a href="#top" className="flex items-baseline gap-1 hover:opacity-90 transition-opacity">
-          <SparkleLogo />
+          <TheLookLogo />
         </a>
 
         {/* Desktop Navigation Links */}

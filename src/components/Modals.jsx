@@ -50,7 +50,7 @@ export function SizeGuideModal({
           <X className="w-4 h-4" />
         </button>
 
-        <span className="editorial-label">Sparkle ✦ JU Winter Fit</span>
+        <span className="editorial-label">The Look ✦ JU Winter Fit</span>
         <h3 className="serif-editorial text-3xl mt-1 mb-2">
           {T('Size Guide (Inches)', 'সাইজ চার্ট (ইঞ্চি)')}
         </h3>
@@ -163,7 +163,7 @@ export function OrderReceiptModal({
         </button>
 
         <div className="print-slip">
-          <p className="editorial-label">Sparkle ✦ · Jahangirnagar University</p>
+          <p className="editorial-label">The Look ✦ · Jahangirnagar University</p>
           <h3 className="serif-editorial text-4xl mt-0.5">
             {T('Pre-Order Confirmed', 'প্রি-অর্ডার সম্পন্ন হয়েছে')}
           </h3>

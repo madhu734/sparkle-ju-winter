@@ -2,23 +2,23 @@ import React, { useState, useEffect } from 'react';
 import { Sparkles, Camera, Image as ImageIcon, ChevronLeft, ChevronRight } from 'lucide-react';
 
 /**
- * Editorial Brand Logo for Sparkle — JU Winter Edition
- * Features the official Sparkle red hexagon emblem and collegiate typography
+ * Editorial Brand Logo for The Look — JU Winter Edition
+ * Features the official The Look luxury gold monogram emblem and collegiate typography
  */
-export function SparkleLogo({ className = '', subtitle = true, showImage = true, showText = true }) {
+export function TheLookLogo({ className = '', subtitle = true, showImage = true, showText = true }) {
   return (
     <div className={`flex items-center gap-2.5 ${className}`}>
       {showImage && (
         <img
-          src="/sparkle-logo.jpg"
-          alt="Sparkle Official Logo"
-          className="w-8 h-8 sm:w-9 sm:h-9 object-contain rounded-lg shadow-sm border border-red-500/20 shrink-0"
+          src="/thelook-logo.svg"
+          alt="The Look Official Logo"
+          className="w-8 h-8 sm:w-9 sm:h-9 object-contain rounded-xl shadow-sm border border-amber-500/30 shrink-0"
         />
       )}
       {showText && (
         <div className="flex items-baseline gap-1.5">
           <span className="serif-editorial text-2xl sm:text-3xl tracking-tight font-bold">
-            Sparkle
+            The Look
           </span>
           {subtitle && (
             <span style={{ color: 'var(--mute)' }} className="hidden sm:inline text-xs tracking-wider uppercase font-medium">
@@ -30,6 +30,9 @@ export function SparkleLogo({ className = '', subtitle = true, showImage = true,
     </div>
   );
 }
+
+// Backward compatible export alias
+export const SparkleLogo = TheLookLogo;
 
 /**
  * Real Product Image or Minimal Editorial Fabric Swatch Placeholder
@@ -49,7 +52,7 @@ export function ProductMedia({
       <div className={`relative w-full ${aspectRatio} overflow-hidden rounded-xl bg-zinc-900/5 ${className}`}>
         <img
           src={imageUrl}
-          alt={title || 'Sparkle JU Winter Jacket'}
+          alt={title || 'The Look JU Winter Jacket'}
           className="w-full h-full object-cover sm:object-contain select-none transition-transform duration-500 group-hover:scale-105"
           loading="lazy"
         />
