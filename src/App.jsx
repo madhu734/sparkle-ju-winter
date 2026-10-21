@@ -44,13 +44,13 @@ export default function App() {
 
   // Mobile-First E-Commerce Filters
   const [filterCategory, setFilterCategory] = useState('all'); // 'all' | 'jacket' | 'hoodie'
-  const [filterColor, setFilterColor] = useState('all'); // 'all' | 'Black' | 'Dark Navy Blue' | 'Maroon'
+  const [filterColor, setFilterColor] = useState('all'); // 'all' | 'Black' | 'Navy Blue' | 'Maroon' | 'Brown'
   const [filterSize, setFilterSize] = useState('all');   // 'all' | 'S' | 'M' | 'L' | 'XL' | '2XL'
   const [filterDesign, setFilterDesign] = useState('all'); // 'all' | 'design_01' | 'design_02'
 
   // Selected Product & Order State for Studio & Checkout
   const [selectedProduct, setSelectedProduct] = useState(DEFAULT_CATALOG[0]);
-  const [orderType, setOrderType] = useState('regular_order');
+  const [orderType, setOrderType] = useState('in_stock');
   const [selectedColorId, setSelectedColorId] = useState('Black');
   const [selectedDesignId, setSelectedDesignId] = useState('design_01');
   const [selectedSize, setSelectedSize] = useState('L');
@@ -148,7 +148,7 @@ export default function App() {
     setSelectedProduct(item);
     setSelectedColorId(item.colorId);
     setSelectedDesignId(item.designId);
-    setOrderType(item.stockType || 'regular_order');
+    setOrderType(item.stockType === 'out_of_stock' ? 'out_of_stock' : 'in_stock');
     if (item.category === 'hoodie' && !['M', 'L', 'XL'].includes(selectedSize)) {
       setSelectedSize('L');
     }

@@ -448,21 +448,28 @@ export default function CatalogSection({
                 <div>
                   {/* Compact Product Visual */}
                   <div className="relative aspect-[4/4.8] overflow-hidden p-2.5 sm:p-3 flex items-center justify-center bg-zinc-950/5">
-                    {/* Category Tag Top Left (Clean, no pre-order badge) */}
-                    <span
-                      className="absolute top-2 left-2 z-10 inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold tracking-wide backdrop-blur-md border"
-                      style={{
-                        backgroundColor: isDark ? 'rgba(0,0,0,0.65)' : 'rgba(255,255,255,0.85)',
-                        borderColor: 'var(--line)',
-                        color: 'var(--ink)'
-                      }}
-                    >
-                      <span>
-                        {item.category === 'hoodie'
-                          ? T('Hoodie', 'হুডি')
-                          : T('Jacket', 'জ্যাকেট')}
+                    {/* Category Tag & Stock Status Top Left */}
+                    <div className="absolute top-2 left-2 z-10 flex flex-wrap gap-1 items-center">
+                      <span
+                        className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-semibold tracking-wide backdrop-blur-md border"
+                        style={{
+                          backgroundColor: isDark ? 'rgba(0,0,0,0.65)' : 'rgba(255,255,255,0.85)',
+                          borderColor: 'var(--line)',
+                          color: 'var(--ink)'
+                        }}
+                      >
+                        <span>
+                          {item.category === 'hoodie'
+                            ? T('Hoodie', 'হুডি')
+                            : T('Jacket', 'জ্যাকেট')}
+                        </span>
                       </span>
-                    </span>
+                      {item.stockType === 'out_of_stock' && (
+                        <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-rose-500/90 text-white backdrop-blur-md shadow-sm">
+                          {T('Stock Out', 'স্টক শেষ')}
+                        </span>
+                      )}
+                    </div>
 
                     {/* Photo Counter Top Right */}
                     {photosCount > 1 && (

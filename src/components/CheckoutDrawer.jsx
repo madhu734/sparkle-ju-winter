@@ -110,7 +110,7 @@ export default function CheckoutDrawer({
                 ? T('Collegiate Winter Hoodie', 'কলেজিয়েট উইন্টার হুডি')
                 : T('Premium Bonded Winter Jacket', 'প্রিমিয়াম বন্ডেড জ্যাকেট')}
             </span>
-            <div className="flex items-baseline gap-2">
+            <div className="flex items-baseline gap-2 flex-wrap">
               <h3 className="serif-editorial text-xl sm:text-2xl font-bold leading-tight">
                 {currentItem?.badgeEn
                   ? T(currentItem.badgeEn, currentItem.badgeBn)
@@ -119,6 +119,15 @@ export default function CheckoutDrawer({
               <span className="serif-editorial text-lg font-bold text-amber-500">
                 {formatPrice(itemPrice)}
               </span>
+              {currentItem?.stockType === 'out_of_stock' ? (
+                <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-rose-500/10 text-rose-500 border border-rose-500/20">
+                  {T('Stock Out', 'স্টক শেষ')}
+                </span>
+              ) : (
+                <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">
+                  {T('In Stock', 'স্টক আছে')}
+                </span>
+              )}
             </div>
           </div>
 
@@ -152,7 +161,7 @@ export default function CheckoutDrawer({
           <div className="flex flex-wrap gap-1.5">
             {(itemCategory === 'hoodie'
               ? [
-                  '🔥 ৩৩০± GSM ফ্লিস',
+                  '🔥 ৩৫০+ GSM ফ্লিস',
                   '🎯 রেগুলার ফিট',
                   '✨ ডাবল লেয়ার হুড',
                   '🎨 কালার ফাস্টনেস',
@@ -407,7 +416,11 @@ export default function CheckoutDrawer({
                   color: 'var(--onacc)'
                 }}
               >
-                {isSubmitting ? '…' : T('Confirm Pre-Order', 'প্রি-অর্ডার কনফার্ম')}
+                {isSubmitting
+                  ? '…'
+                  : currentItem?.stockType === 'out_of_stock'
+                  ? T('Pre-Order (Stock Out)', 'প্রি-অর্ডার কনফার্ম')
+                  : T('Confirm Order', 'অর্ডার কনফার্ম')}
               </button>
             </div>
           </form>

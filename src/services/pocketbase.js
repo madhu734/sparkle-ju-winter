@@ -8,6 +8,23 @@ import {
   HOODIE_SIZES
 } from '../config/storeConfig';
 
+function normalizeColor(color) {
+  if (!color) return 'Black';
+  const c = color.trim();
+  if (c.toLowerCase().includes('navy')) return 'Navy Blue';
+  if (c.toLowerCase().includes('black')) return 'Black';
+  if (c.toLowerCase().includes('maroon')) return 'Maroon';
+  if (c.toLowerCase().includes('brown')) return 'Brown';
+  return c;
+}
+
+function normalizeStock(stock) {
+  if (!stock) return 'in_stock';
+  const s = stock.trim().toLowerCase();
+  if (s.includes('out') || s === 'out_of_stock') return 'out_of_stock';
+  return 'in_stock';
+}
+
 /**
  * Fetch dynamic products & hoodies with multiple photos from PocketBase collections.
  * Supports multiple images (model photos, real fabric, inner lining, details).
@@ -45,9 +62,9 @@ export async function fetchPocketBaseProducts() {
           allItems.push({
             id: rec.id,
             category: 'jacket',
-            colorId: rec.jacket_color || 'Black',
+            colorId: normalizeColor(rec.jacket_color),
             designId: rec.design_variant || 'design_01',
-            stockType: rec.stock_type || 'regular_order',
+            stockType: normalizeStock(rec.stock_type),
             badgeEn: rec.badge_en || '',
             badgeBn: rec.badge_bn || '',
             availableSizes:
@@ -83,9 +100,9 @@ export async function fetchPocketBaseProducts() {
           allItems.push({
             id: rec.id,
             category: 'hoodie',
-            colorId: rec.hoodie_color || 'Black',
+            colorId: normalizeColor(rec.hoodie_color),
             designId: rec.design_variant || 'design_01',
-            stockType: rec.stock_type || 'regular_order',
+            stockType: normalizeStock(rec.stock_type),
             badgeEn: rec.badge_en || 'Hoodie',
             badgeBn: rec.badge_bn || 'হুডি',
             availableSizes:

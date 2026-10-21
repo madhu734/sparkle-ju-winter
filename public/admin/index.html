@@ -336,7 +336,12 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <div>
             <label class="block text-slate-400 font-medium mb-1">রং / কালার (Color) *</label>
-            <input type="text" id="itemColor" required placeholder="e.g. Black / Dark Navy Blue / Maroon" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-slate-100 focus:outline-none focus:border-amber-400">
+            <select id="itemColor" required class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-slate-100 focus:outline-none focus:border-amber-400">
+              <option value="Black">ব্ল্যাক (Black)</option>
+              <option value="Navy Blue">নেভি ব্লু (Navy Blue)</option>
+              <option value="Maroon">মেরুন (Maroon)</option>
+              <option value="Brown">ব্রাউন (Brown)</option>
+            </select>
           </div>
           <div>
             <label class="block text-slate-400 font-medium mb-1">ডিজাইন / ট্যাগ (Design Tag) *</label>
@@ -350,10 +355,9 @@
             <input type="number" id="itemPrice" min="0" placeholder="0 = ৳0000 ডিসপ্লে" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-slate-100 focus:outline-none focus:border-amber-400">
           </div>
           <div>
-            <label class="block text-slate-400 font-medium mb-1">স্টক টাইপ (Stock Status) *</label>
+            <label class="block text-slate-400 font-medium mb-1">স্টক স্ট্যাটাস (Stock Status) *</label>
             <select id="itemStockType" class="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-slate-100 focus:outline-none focus:border-amber-400">
-              <option value="regular_order">ইন-স্টক / সাধারণ অর্ডার (Regular Order)</option>
-              <option value="pre_order">প্রি-অর্ডার (Pre-Order)</option>
+              <option value="in_stock">স্টক আছে (In Stock)</option>
               <option value="out_of_stock">স্টক শেষ (Out of Stock)</option>
             </select>
           </div>
@@ -860,13 +864,10 @@
       const priceText = item.price && item.price > 0 ? `৳${item.price.toLocaleString()}` : '৳0000 (Placeholder)';
       
       // Stock badge
-      const stock = item.stock_type || 'regular_order';
-      let stockBadge = '<span class="px-2 py-0.5 rounded-full text-[10px] bg-emerald-400/10 text-emerald-400 border border-emerald-400/20">In Stock</span>';
-      if (stock === 'pre_order') {
-        stockBadge = '<span class="px-2 py-0.5 rounded-full text-[10px] bg-amber-400/10 text-amber-400 border border-amber-400/20">Pre-Order</span>';
-      } else if (stock === 'out_of_stock') {
-        stockBadge = '<span class="px-2 py-0.5 rounded-full text-[10px] bg-rose-400/10 text-rose-400 border border-rose-400/20">Stock Out</span>';
-      }
+      const isOutOfStock = item.stock_type === 'out_of_stock';
+      const stockBadge = isOutOfStock
+        ? '<span class="px-2 py-0.5 rounded-full text-[10px] bg-rose-400/10 text-rose-400 border border-rose-400/20 font-medium">আউট অব স্টক</span>'
+        : '<span class="px-2 py-0.5 rounded-full text-[10px] bg-emerald-400/10 text-emerald-400 border border-emerald-400/20 font-medium">স্টক আছে</span>';
 
       // Photos
       let imageUrl = '';
@@ -951,10 +952,12 @@
       document.getElementById('itemFormId').value = itemId;
       document.getElementById('itemModalTitle').textContent = category === 'jacket' ? 'জ্যাকেট এডিট করুন' : 'হুডি এডিট করুন';
 
-      document.getElementById('itemColor').value = item.jacket_color || item.hoodie_color || '';
+      let colorVal = item.jacket_color || item.hoodie_color || 'Black';
+      if (colorVal === 'Dark Navy Blue') colorVal = 'Navy Blue';
+      document.getElementById('itemColor').value = colorVal;
       document.getElementById('itemDesign').value = item.design_variant || '';
       document.getElementById('itemPrice').value = item.price || 0;
-      document.getElementById('itemStockType').value = item.stock_type || 'regular_order';
+      document.getElementById('itemStockType').value = item.stock_type === 'out_of_stock' ? 'out_of_stock' : 'in_stock';
       document.getElementById('itemBadgeEn').value = item.badge_en || '';
       document.getElementById('itemBadgeBn').value = item.badge_bn || '';
 

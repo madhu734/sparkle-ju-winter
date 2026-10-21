@@ -190,11 +190,22 @@ export default function StudioInspector({
                       : T(matchedCatalogItem.badgeBn || 'বন্ডেড উইন্টার জ্যাকেট', matchedCatalogItem.badgeEn || 'Bonded Winter Jacket')}
                   </div>
                 </div>
-                {(matchedCatalogItem.badgeEn || matchedCatalogItem.design_variant) && (
-                  <span className="px-2.5 py-1 rounded-full text-xs font-semibold border shrink-0" style={{ borderColor: 'var(--line)', color: 'var(--ink)' }}>
-                    {T(matchedCatalogItem.badgeEn || matchedCatalogItem.design_variant, matchedCatalogItem.badgeBn || matchedCatalogItem.design_variant)}
-                  </span>
-                )}
+                <div className="flex items-center gap-1.5 shrink-0">
+                  {matchedCatalogItem?.stockType === 'out_of_stock' ? (
+                    <span className="px-2 py-0.5 rounded-full text-xs font-semibold bg-rose-500/10 text-rose-500 border border-rose-500/20">
+                      {T('Stock Out', 'স্টক শেষ')}
+                    </span>
+                  ) : (
+                    <span className="px-2 py-0.5 rounded-full text-xs font-semibold bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">
+                      {T('In Stock', 'স্টক আছে')}
+                    </span>
+                  )}
+                  {(matchedCatalogItem.badgeEn || matchedCatalogItem.design_variant) && (
+                    <span className="px-2.5 py-1 rounded-full text-xs font-semibold border" style={{ borderColor: 'var(--line)', color: 'var(--ink)' }}>
+                      {T(matchedCatalogItem.badgeEn || matchedCatalogItem.design_variant, matchedCatalogItem.badgeBn || matchedCatalogItem.design_variant)}
+                    </span>
+                  )}
+                </div>
               </div>
             )}
 
@@ -543,7 +554,9 @@ export default function StudioInspector({
               >
                 {isSubmitting
                   ? T('Processing Order…', 'অর্ডার প্রসেস হচ্ছে…')
-                  : T('Confirm Pre-Order', 'প্রি-অর্ডার কনফার্ম করুন')}
+                  : matchedCatalogItem?.stockType === 'out_of_stock'
+                  ? T('Confirm Pre-Order (Stock Out)', 'প্রি-অর্ডার কনফার্ম করুন (স্টক আউট)')
+                  : T('Confirm Order', 'অর্ডার কনফার্ম করুন')}
               </button>
             </div>
           </form>
